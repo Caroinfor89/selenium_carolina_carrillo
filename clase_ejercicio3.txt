@@ -1,0 +1,20 @@
+package Clase03;
+
+import java.util.Scanner;
+
+public class Ejercicio1 {
+
+    public static void main (String args[]){
+
+        Scanner input= new Scanner(System.in);
+        System.out.println("Ingrese un número");
+        int num1= input.nextInt();
+
+        int doble= obtenerDoble(num1);
+        System.out.println("El doble de " + num1 + " es " + doble);
+    }
+    public static int obtenerDoble(int num1){
+
+        return num1 *  2;
+    }
+}
