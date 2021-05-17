@@ -1,0 +1,43 @@
+package Clase11;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class SpotifyWithCssSelectorTest{
+
+    WebDriver driver;
+
+    private WebDriver getSpotify(){
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("https://www.spotify.com/uy/signup/");
+        return driver;
+
+    }
+    @Test
+
+    public void  spotifyByPlaceHolderTest() throws InterruptedException {
+
+        WebDriver driver = getSpotify();
+
+        driver.findElement(By.cssSelector("input[placeholder='Introduce tu correo electrónico.']")).sendKeys("prueba@prueba.com");
+        driver.findElement(By.cssSelector("input[placeholder='Vuelve a introducir tu correo electrónico.']")).sendKeys("prueba@prueba.com");
+        driver.findElement(By.cssSelector("input[placeholder='Crea una contraseña.']")).sendKeys("asdf89");
+        driver.findElement(By.cssSelector("input[placeholder='Introduce un nombre de perfil.']")).sendKeys("Anto89");
+        driver.findElement(By.cssSelector("input[placeholder='DD']")).sendKeys("11");
+        Select month= new Select (driver.findElement(By.xpath("//*[@name='month']")));
+        month.selectByVisibleText("Abril");
+        driver.findElement(By.cssSelector("input[placeholder='AAAA']")).sendKeys("1989");
+        driver.findElement(By.xpath("(//*[contains(text(),'Mujer')])[1]")).click();
+        Thread.sleep(2000);
+        WebElement buttonRegister = driver.findElement(By.cssSelector("button[class='Button-sc-8cs45s-0 jgLyVk']"));
+        buttonRegister.click();
+        driver.quit();
+
+    }
+
+}

@@ -1,0 +1,39 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+import java.util.List;
+
+public class Ejercicio14{
+
+    WebDriver driver;
+
+    @Test
+
+    public void testNetflix(){
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("https://www.netflix.com/cl/");
+        List<WebElement> listaH1 = driver.findElements(By.tagName("h1"));
+        System.out.println("Mostrar la cantidad de elementos h1 son : " + listaH1.size());
+
+        List<WebElement> listaH2 = driver.findElements(By.tagName("h2"));
+        System.out.println("La cantidad de elementos tipo h2 son : " + listaH2.size());
+
+        driver.navigate().refresh();
+        List<WebElement> listaBotones = driver.findElements(By.tagName("button"));
+        for(WebElement nombreBotones: listaBotones){
+            System.out.println(" Nombre de los botones " + nombreBotones.getText());
+        }
+        List<WebElement> listaDIV = driver.findElements(By.tagName("div"));
+        System.out.println("La cantidad de div en esta páginas es : " + listaDIV.size());
+        String title= driver.getTitle();
+        System.out.println("Titulo de la pagina es " + title);
+        List<WebElement> listaLink = driver.findElements(By.tagName("a"));
+        System.out.println("La cantidad de elementos de tipo link son : " + listaLink.size());
+
+
+    }
+}
